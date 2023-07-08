@@ -1,0 +1,8 @@
+.quotes-card {
+    text-align: "center";
+    box-shadow: var(--shadow-white) !important; 
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -7,10 +8,12 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import { useTheme } from "@emotion/react";
+
+import { Grid, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { quoteSlice } from "../../Store/quoteSlice";
+import "./quotesCard.css";
 
 function QuotesCard(props) {
   const [heartColor, setHeartColor] = useState("#fff")
@@ -20,7 +23,7 @@ function QuotesCard(props) {
   const theme = useTheme();
   const themeState = useSelector((state) => state.theme);
   const token = localStorage.getItem("authToken");
-  console.log(quote)
+  // console.log(quote)
 
  
   const likeHandler = (data) => {
@@ -52,12 +55,12 @@ function QuotesCard(props) {
   };
 
   return (
+    <Grid item xs={12} md={6} lg={3}>
     <Card
-      sx={{ width: "90%" }}
-      m={2}
-      style={{ backgroundColor: theme.palette.secondary.main,
-        textAlign: "center" 
-      }}
+      sx={{ width: "90%", marginTop: "50px" }}
+    
+      style={{ backgroundColor: theme.palette.secondary.main}}
+      className="quotes-card"
     >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -79,7 +82,9 @@ function QuotesCard(props) {
         <Button size="small" onClick={goToDetails}>Learn More</Button>
       </CardActions>
     </Card>
-  );
+  
+    </Grid>
+      );
 }
 
 export default QuotesCard;
