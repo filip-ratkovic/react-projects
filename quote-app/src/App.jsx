@@ -3,11 +3,14 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AllQuotes from "./Pages/AllQuotes/AllQuotes";
-import Nav from "./Pages/Nav/Nav";
 import { themeDark } from "./Style/themeDark";
 import { themeLight } from "./Style/themeLight";
-import { ThemeProvider, useTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import AddQuote from "./Pages/AddQuote/AddQuote";
+import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/SignUp/SignUp";
+import QuoteDetails from "./Pages/QuoteDetails/QuoteDetails";
+import Edit from "./Pages/Edit/Edit";
 
 function App() {
   const themeState = useSelector((state) => state.theme);
@@ -15,13 +18,14 @@ function App() {
 
   return (
     <ThemeProvider theme={selectedTheme} >
-      <div className="main" >
-        {/* <Nav /> */}
         <Routes>
         <Route path="/" element={<AllQuotes />} />
         <Route path="/add" element={<AddQuote/>} />
+        <Route path="/edit/:id" element={<Edit/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signUp" element={<SignUp/>} />
+        <Route path="/quote/:id" element={<QuoteDetails/>} />
         </Routes>
-      </div>
     </ThemeProvider>
   );
 }

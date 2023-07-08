@@ -1,9 +1,9 @@
-import { Switch } from '@mui/material'
-
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { themeSlice } from '../../Store/themeSlice'
+import {useNavigate} from "react-router-dom"
 
+import { Switch } from '@mui/material'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,14 +11,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import { styled } from '@mui/material/styles';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 function Nav() {
   const themeState = useSelector((state) => state.theme)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -77,18 +76,20 @@ function Nav() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2,display:"none" }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" >
+          <Typography variant="h6" component="div" sx={{cursor:"pointer", m:"10px"}}
+           onClick={() => navigate("/")}>
             Home
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div"  sx={{ flexGrow: 1, cursor:"pointer", m:"10px" }}
+           onClick={() => navigate("/favorites")}>
             Favorites
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Sign up</Button>
+          <Button color="inherit" onClick={() => navigate("/login")}>Login</Button>
+          <Button color="inherit" onClick={() => navigate("/signup")}>Sign up</Button>
           
 
         <FormControlLabel

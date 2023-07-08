@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "./allQuotes.css";
 import Loading from "../Loading/Loading";
 import QuotesCard from "../QuotesCard/QuotesCard";
-import { Box, Button, Fab, Grid, Icon } from "@mui/material";
+import { Fab, Grid } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import Layout from "../../Containers/Layout";
@@ -29,10 +29,9 @@ function AllQuotes() {
   }, []);
 
   if (loading) {
-    <Loading />;
+   return <Loading />;
   }
   return (
-    // <div style={{ backgroundColor: theme.palette.background }}>
     <Layout style={{position:"relative"}}>
       <Fab color="primary" aria-label="add"
        style={{position:"absolute", bottom:"20px", right:"20px"}}
@@ -47,7 +46,6 @@ function AllQuotes() {
         })}
       </Grid>
     </Layout>
-    // {/* </div> */}
   );
 }
 
