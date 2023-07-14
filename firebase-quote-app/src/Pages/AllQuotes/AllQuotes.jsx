@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./allQuotes.css";
 import Loading from "../Loading/Loading";
-import QuotesCard from "../QuotesCard/QuotesCard";
+import QuotesCard from "../../Components/QuotesCard/QuotesCard";
 import { Fab, Grid } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
@@ -23,6 +23,7 @@ function AllQuotes() {
         setQuotes(data);
         setLoading(false)
         console.log(data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +35,9 @@ function AllQuotes() {
    return <Loading />;
   }
   return (
-    <Layout style={{position:"relative"}}>
+    <Layout>
       <Fab color="primary" aria-label="add"
-       style={{position:"absolute", bottom:"20px", right:"20px"}}
+       style={{position:"fixed", bottom:"20px", right:"20px"}}
        onClick={()=> navigate("/add")}
        >
         <AddIcon />
