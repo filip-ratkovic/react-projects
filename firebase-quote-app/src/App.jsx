@@ -12,6 +12,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import QuoteDetails from "./Pages/QuoteDetails/QuoteDetails";
 import Edit from "./Pages/Edit/Edit";
 
+
 function App() {
   const themeState = useSelector((state) => state.theme);
   const selectedTheme = themeState.theme === "light" ? themeLight : themeDark;
