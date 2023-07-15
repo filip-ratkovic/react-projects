@@ -1,9 +1,14 @@
-.quotes-card {
+/* .quotes-card {
     text-align: "center";
     box-shadow: var(--shadow-white) !important; 
-    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+} */
+
+.quotes-card {
+    text-align: "center";
+    display: flex;
+    flex-direction: column;
 }

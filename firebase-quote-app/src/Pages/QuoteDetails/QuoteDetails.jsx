@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteQuote, getQuoteById, likeQuote } from "../../Config/firebase";
+import { Card, CardContent, IconButton, Typography, CardActions,Box, useTheme, Button} from "@mui/material";
+import {
+  FormatQuote as QuotationMarkIcon,
+  Favorite as LikedIcon,
+  FavoriteBorderOutlined as UnlikeIcon,
+} from "@mui/icons-material";
 
 function QuoteDetails() {
   const params = useParams();
-  const [quote, setQuote] = useState({});
+  const [quote, setQuote] = useState([]);
   const navigate = useNavigate();
+  const theme = useTheme()
+  const [heartColor, setHeartColor] = useState(true);
+
 
   const getQuoteData = () => {
     getQuoteById(params.id)
@@ -40,25 +49,44 @@ function QuoteDetails() {
     }
   };
 
+  console.log(quote)
+
   return (
     <div className="quote-details">
-      <div className="quote-details-card">
-        <h3>
-          <i>{quote.text}</i>
-        </h3>
-        <p>
-          <b>
-            <i>{quote.author}</i>
-          </b>
-        </p>
-        <p>{quote.source}</p>
-        <p className="likes">Likes: {quote.likes}</p>
-        <button onClick={likeHandler}>Like</button>
-        <button onClick={() => navigate(`/quote/${params.id}/edit`)}>
-          Edit
-        </button>
-        <button onClick={() => deleteQuoteHandler()}>Delete</button>
-      </div>
+      <Card
+        sx={{ width: "90%", marginTop: "50px" }}
+        style={{ backgroundColor: theme.palette.secondary.main }}
+        className="quotes-card"
+      >
+        <CardContent>
+          <Typography gutterBottom variant="body2" component="div">
+            {quote.author?.toUpperCase()}
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            <QuotationMarkIcon/>
+            {quote.text}
+          </Typography>
+        </CardContent>
+        <CardActions
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Box>
+            <IconButton aria-label="add to favorites" style={{ color: "red" }}
+            onClick={likeHandler}
+            >
+              {heartColor ? <UnlikeIcon /> : <LikedIcon />}
+            </IconButton>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              marginLeft="10px"
+            >
+              {quote.likes} likes
+            </Typography>
+          </Box>
+        </CardActions>
+      </Card>
+     
     </div>
   );
 }
