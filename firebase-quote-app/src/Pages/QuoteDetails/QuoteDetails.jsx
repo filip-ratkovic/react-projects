@@ -91,7 +91,6 @@ function QuoteDetails() {
     navigate(`/quote/${params.id}/edit`);
   };
 
-  console.log(quote);
 
   if (loading) {
     return <Loading />;

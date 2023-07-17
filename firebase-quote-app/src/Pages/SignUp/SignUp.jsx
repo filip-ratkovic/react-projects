@@ -33,14 +33,13 @@ const SignUpSchema = yup.object({
 });
 
 const SignUp = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const themeState = useSelector((state) => state.theme);
-
+  const theme = useTheme();  
   const signIn = async (values) => {
     try {
-      await createUserWithEmailAndPassword(auth,values.email, values.password )
+      await createUserWithEmailAndPassword(auth,values.email, values.password ) 
+      .then(()=> {
+        localStorage.setItem("userEmail", auth.currentUser?.email)
+      })
     } catch (error) {
       console.log(error)
     }
@@ -58,6 +57,7 @@ const signInWithGoogle = async () => {
 const logout = async () => {
   try {
     await signOut(auth)
+    console.log(auth?.currentUser?.email)
   } catch (error) {
     console.log(error)
   }

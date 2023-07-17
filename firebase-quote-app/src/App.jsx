@@ -22,7 +22,7 @@ function App() {
         <Routes>
         <Route path="/" element={<AllQuotes />} />
         <Route path="/add" element={<AddQuote/>} />
-        <Route path="/edit/:id" element={<Edit/>} />
+        <Route path="/quote/:id/edit" element={<Edit/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/quote/:id" element={<QuoteDetails/>} />

@@ -9,7 +9,7 @@ import { Add as AddIcon } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import Layout from "../../Containers/Layout";
 import { useNavigate } from "react-router-dom";
-import {getQuotes} from "../../Config/firebase"
+import {auth, getQuotes} from "../../Config/firebase"
 
 function AllQuotes() {
   const [quotes, setQuotes] = useState([]);
@@ -17,12 +17,14 @@ function AllQuotes() {
   const theme = useTheme();
   const navigate = useNavigate()
 
+  const userEmail = auth?.currentUser?.email;
+
+
   useEffect(() => {
     getQuotes()
       .then((data) => {
         setQuotes(data);
         setLoading(false)
-        console.log(data);
 
       })
       .catch((error) => {
@@ -36,12 +38,15 @@ function AllQuotes() {
   }
   return (
     <Layout>
-      <Fab color="primary" aria-label="add"
+      { userEmail ? 
+        <Fab color="primary" aria-label="add"
        style={{position:"fixed", bottom:"20px", right:"20px"}}
        onClick={()=> navigate("/add")}
        >
         <AddIcon />
       </Fab>
+      : null  
+    }
 
       <Grid container spacing={2}>
         {quotes.map((quote, index) => {

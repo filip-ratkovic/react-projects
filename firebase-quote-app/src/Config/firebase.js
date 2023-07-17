@@ -41,6 +41,10 @@ export const getQuotes = async () => {
     const docRef = doc(db, "quotes", id);
     return await updateDoc(docRef, { likes: likes });
   };
+  export const isLiked = async (id, Isliked) => {
+    const docRef = doc(db, "quotes", id);
+    return await updateDoc(docRef, { Isliked: Isliked });
+  };
   
   export const updateQuoteData = async (id, data) => {
     const docRef = doc(db, "quotes", id);
