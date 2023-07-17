@@ -1,6 +1,5 @@
 import React from "react";
 
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -29,9 +28,14 @@ function QuotesCard(props) {
     >
       <Box
         sx={{ width: "100%", marginTop: "50px" }}
-        style={{ backgroundColor: theme.palette.background }}
+        style={{ backgroundColor: theme.palette.background, position:"relative"}}
         className="quotes-card"
       >
+        <Box className = "learn-more-btn-cont">
+        <button size="small" onClick={goToDetails}>
+            Learn More
+          </button>
+        </Box>
         <CardContent         sx={{ display: "flex", flexWrap: "nowrap" }}
 >
           <Box sx={{ width: "10%" }}>
@@ -47,12 +51,6 @@ function QuotesCard(props) {
           </Box>
           
         </CardContent>
-        <Button size="small" onClick={goToDetails}>
-            Learn More
-          </Button>
-        <CardActions>
-         
-        </CardActions>
       </Box>
     </Grid>
   );
