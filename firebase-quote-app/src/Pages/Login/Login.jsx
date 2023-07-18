@@ -14,6 +14,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { auth, login } from "../../Config/firebase";
 
 const loginSchema = yup.object({
   email: yup
@@ -32,31 +33,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const submitForm = (values) => {
-    fetch("https://js-course-server.onrender.com/user/login", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          alert(data.message);
-        }
-
-        if (data.token) {
-          const decoded = jwtDecode(data.token);
-          dispatch(authSlice.actions.setData(decoded));
-          localStorage.setItem("authToken", data.token);
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const submitLogin = async (values) => {
+    await login(values.email, values.password);
+    navigate("/");
+console.log(auth.currentUser.email)
+};
 
   return (
     <Layout        
@@ -65,7 +46,7 @@ const Login = () => {
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
         onSubmit={(values, actions) => {
-          submitForm(values);
+          submitLogin(values);
         }}
         style={{backgroundColor: theme.palette.secondary.main}}
       >

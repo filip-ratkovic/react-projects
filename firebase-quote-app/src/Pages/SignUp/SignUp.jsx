@@ -33,16 +33,13 @@ const SignUpSchema = yup.object({
 });
 
 const SignUp = () => {
-  const theme = useTheme();  
+  const theme = useTheme(); 
+  const navigate = useNavigate()
+
+
   const signIn = async (values) => {
-    try {
-      await createUserWithEmailAndPassword(auth,values.email, values.password ) 
-      .then(()=> {
-        localStorage.setItem("userEmail", auth.currentUser?.email)
-      })
-    } catch (error) {
-      console.log(error)
-    }
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      navigate("/")
 }
 
 const signInWithGoogle = async () => {

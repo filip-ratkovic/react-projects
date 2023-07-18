@@ -18,6 +18,7 @@ function AllQuotes() {
   const navigate = useNavigate()
 
   const userEmail = auth?.currentUser?.email;
+  console.log(userEmail)
 
 
   useEffect(() => {

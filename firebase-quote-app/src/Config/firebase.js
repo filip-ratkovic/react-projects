@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider} from "firebase/auth"
+import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword} from "firebase/auth"
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -16,6 +16,13 @@ const app = initializeApp(firebaseConfig);
 // SIGN UP 
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
+
+// LOGIN 
+export const login = async (email, password) => {
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  const user = userCredential.user;
+  return user
+}
 
 // FETCH DATA 
 export const db = getFirestore(app);
