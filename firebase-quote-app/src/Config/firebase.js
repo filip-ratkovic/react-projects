@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, 
+  signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword} from "firebase/auth"
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 import { store } from "../Store/store";
 import { authSlice } from "../Store/authSlice";
@@ -62,6 +63,19 @@ export const logout = async () => {
   }
 };
 
+//  PASSWORD
+export const resetPassword = async (email) => {
+   await sendPasswordResetEmail(auth, email)
+}
+
+export const updateNewPassword = async(newPassword) => {
+    try{ 
+      await updatePassword(newPassword);
+   
+    } catch(error) {
+      alert(error.message)
+    }
+}
 // LOGIN 
 export const login = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);

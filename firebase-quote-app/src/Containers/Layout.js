@@ -5,8 +5,6 @@ import Nav from "../Pages/Nav/Nav";
 
 function Layout(props) {
   const theme = useTheme();
- 
-  const themeState = useSelector((state) => state.theme);
 
   return (
     <Box style={{ backgroundColor: theme.palette.background, minHeight: "100vh"}}>

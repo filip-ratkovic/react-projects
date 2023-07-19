@@ -12,12 +12,15 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { auth, logout } from '../../Config/firebase'
 
 function Nav() {
   const themeState = useSelector((state) => state.theme)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
+  const userAuth = auth?.currentUser?.uid
+  console.log(userAuth)
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -84,12 +87,18 @@ function Nav() {
            onClick={() => navigate("/")}>
             Home
           </Typography>
+          <Typography variant="h6" component="div" sx={{cursor:"pointer", m:"10px"}}
+           onClick={() => navigate("/password")}>
+            Password
+          </Typography>
           <Typography variant="h6" component="div"  sx={{ flexGrow: 1, cursor:"pointer", m:"10px" }}
            onClick={() => navigate("/favorites")}>
             Favorites
           </Typography>
-          {authState.id ? (
-            <Button style={{color:"white"}} variant="outlined" >
+          {authState.id || userAuth ? (
+            <Button style={{color:"white"}} variant="outlined" 
+              onClick={logout}
+            >
               Logout
             </Button>
           ) : (

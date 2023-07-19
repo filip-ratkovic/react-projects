@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { auth, login } from "../../Config/firebase";
+import { auth, login, resetPassword } from "../../Config/firebase";
 
 const loginSchema = yup.object({
   email: yup
@@ -29,15 +29,30 @@ const loginSchema = yup.object({
 });
 
 const Login = () => {
+  const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
 
   const submitLogin = async (values) => {
-    await login(values.email, values.password);
+    try{
+      await login(values.email, values.password);
     navigate("/");
-console.log(auth.currentUser.email)
+    } catch (error) {
+        setForgotPassword(true)
+        alert(error.message)
+        alert(error.code)
+    }
 };
+
+const forgotPasswordHandler = async (data) => {
+ try{
+ await resetPassword(data)
+  alert(data)
+ } catch (error) {
+  alert(error.message,  "error paswod", error.code)
+ }
+}
 
   return (
     <Layout        
@@ -101,6 +116,9 @@ console.log(auth.currentUser.email)
                   },
                 }}
               />
+                    {forgotPassword &&
+                     (<Typography style={{color:"blue", cursor:"pointer"}} onClick={()=> forgotPasswordHandler(values.email)}>Forgot password ?</Typography>)}
+
               <Typography variant="body1" color="error">
                 {errors.password && touched.password && errors.password}
               </Typography>

@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import {useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addQuote, getQuoteById, updateQuoteData } from "../../Config/firebase";
 import Layout from "../../Containers/Layout";
 
-import {
-  TextField,
-  Button,
-  Box,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { TextField, Button, Box, Typography, useTheme } from "@mui/material";
 import Loading from "../Loading/Loading";
 
 const newQuoteSchema = yup.object({
@@ -28,8 +22,8 @@ const newQuoteSchema = yup.object({
 });
 
 const Edit = () => {
-  const [quote, setQuote] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [quote, setQuote] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -54,16 +48,14 @@ const Edit = () => {
     try {
       await updateQuoteData(params.id, values);
       getQuoteData();
-      navigate(`/quote/${quote.id}`)
-    } catch(error) {
-      console.log(error)
-    } 
-  }
+      navigate(`/quote/${quote.id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (loading) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
   return (
     <Layout>
@@ -72,7 +64,7 @@ const Edit = () => {
           text: quote.text,
           author: quote.author,
           likes: quote.likes,
-          isLiked: quote.isLiked
+          isLiked: quote.isLiked,
         }}
         validationSchema={newQuoteSchema}
         onSubmit={(values, actions) => {
@@ -87,9 +79,10 @@ const Edit = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <Box sx={{textAlign:"center"}}>
+          <Box style={{ textAlign: "center", width:"450px", maxWidth: "90%"}}>
             <Box my={1}>
               <TextField
+              style={{width:"100%"}}
                 variant="outlined"
                 label="Author name"
                 type="text"
@@ -112,9 +105,10 @@ const Edit = () => {
 
             <Box my={1}>
               <TextField
-                variant="outlined"
-                label="Quote text"
-                type="text"
+              style={{width:"100%"}}
+              label="Quote text"
+                multiline
+                id="outlined-multiline-flexible"
                 name="text"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -138,7 +132,6 @@ const Edit = () => {
         )}
       </Formik>
     </Layout>
-    
   );
 };
 

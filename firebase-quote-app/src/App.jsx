@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
 import QuoteDetails from "./Pages/QuoteDetails/QuoteDetails";
 import Edit from "./Pages/Edit/Edit";
+import Password from "./Pages/Password/Password";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/quote/:id" element={<QuoteDetails/>} />
+        <Route path="/password" element={<Password/>} />
         </Routes>
     </ThemeProvider>
   );
