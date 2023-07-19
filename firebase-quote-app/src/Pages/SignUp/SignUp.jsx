@@ -7,18 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 // import { authSlice } from "../../Store/authSlice";
 import Layout from "../../Containers/Layout";
 
-
-
-import {auth, googleProvider} from "../../Config/firebase"
-import {createUserWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
-
+import { auth, googleProvider, logout, signUp } from "../../Config/firebase";
 import {
-  TextField,
-  Button,
-  Box,
-  Typography,
-  useTheme,
-} from "@mui/material";
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+
+import { TextField, Button, Box, Typography, useTheme } from "@mui/material";
+import { authSlice } from "../../Store/authSlice";
+import { store } from "../../Store/store";
 
 const SignUpSchema = yup.object({
   email: yup
@@ -33,32 +31,24 @@ const SignUpSchema = yup.object({
 });
 
 const SignUp = () => {
-  const theme = useTheme(); 
-  const navigate = useNavigate()
+  const theme = useTheme();
+  const navigate = useNavigate();
 
+  const signUpSubmit = async (values) => {
+    await signUp(values.email, values.password)
+  };
 
-  const signIn = async (values) => {
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
-      navigate("/")
-}
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const signInWithGoogle = async () => {
-  try {
-    await signInWithPopup(auth, googleProvider )
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-
-const logout = async () => {
-  try {
-    await signOut(auth)
-    console.log(auth?.currentUser?.email)
-  } catch (error) {
-    console.log(error)
-  }
-}
+  const HandleLogout = async () => {
+    await logout()
+  };
 
   return (
     <Layout>
@@ -66,14 +56,14 @@ const logout = async () => {
         initialValues={{ email: "", password: "" }}
         validationSchema={SignUpSchema}
         onSubmit={(values, actions) => {
-         signIn(values)
+          signUpSubmit(values);
         }}
-        style={{backgroundColor: theme.palette.secondary.main}}
+        style={{ backgroundColor: theme.palette.secondary.main }}
       >
         {({
           values,
-          errors, 
-          touched, 
+          errors,
+          touched,
           handleChange,
           handleBlur,
           handleSubmit,
@@ -128,11 +118,15 @@ const logout = async () => {
               Sign in
             </Button>
 
-            <Button onClick={signInWithGoogle} type="button" variant="contained" >
+            <Button
+              onClick={signInWithGoogle}
+              type="button"
+              variant="contained"
+            >
               Sign in with Google
             </Button>
 
-            <Button onClick={logout} type="button" variant="contained" >
+            <Button onClick={HandleLogout} type="button" variant="contained">
               Logout
             </Button>
           </div>

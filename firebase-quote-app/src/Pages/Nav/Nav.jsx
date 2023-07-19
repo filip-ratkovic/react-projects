@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { themeSlice } from '../../Store/themeSlice'
 import {useNavigate} from "react-router-dom"
-
 import { Switch } from '@mui/material'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,8 +15,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 function Nav() {
   const themeState = useSelector((state) => state.theme)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth);
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -88,10 +88,20 @@ function Nav() {
            onClick={() => navigate("/favorites")}>
             Favorites
           </Typography>
-          <Button color="inherit" onClick={() => navigate("/login")}>Login</Button>
+          {authState.id ? (
+            <Button style={{color:"white"}} variant="outlined" >
+              Logout
+            </Button>
+          ) : (
+            <Button
+            style={{color:"white"}} 
+              variant="outlined"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+          )}
           <Button color="inherit" onClick={() => navigate("/signup")}>Sign up</Button>
-          
-
         <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked 
         onChange={() => {

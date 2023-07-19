@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword} from "firebase/auth"
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
+import { store } from "../Store/store";
+import { authSlice } from "../Store/authSlice";
+import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,10 +20,59 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
 
+export const signUp = async (email, password) => {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  const user = userCredential.user;
+  store.dispatch(
+    authSlice.actions.setData({
+      id: user.uid,
+      email: user.email,
+      token: user.accessToken,
+    })
+  );
+  return user;
+};
+
+export  const signInWithGoogle = async () => {
+  try {
+    const userCredential = await signInWithPopup(auth, googleProvider);
+    const user = userCredential.user
+    store.dispatch(
+      authSlice.actions.setData({
+        id: user.uid,
+        email: user.email,
+        token: user.accessToken,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logout = async () => {
+  try {
+    await signOut(auth);
+    store.dispatch(authSlice.actions.logout());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // LOGIN 
 export const login = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
+  store.dispatch(
+    authSlice.actions.setData({
+      id: user.uid,
+      email: user.email,
+      token: user.accessToken,
+    })
+  );
   return user
 }
 
