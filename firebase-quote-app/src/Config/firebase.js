@@ -8,12 +8,12 @@ import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "fir-quote-8aae3.firebaseapp.com",
-  projectId: "fir-quote-8aae3",
-  storageBucket: "fir-quote-8aae3.appspot.com",
-  messagingSenderId: "829826053384",
-  appId: "1:829826053384:web:c51fd6b3b84face1c2a8bd",
-  measurementId: "G-YZL3HZ6RH5"
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
