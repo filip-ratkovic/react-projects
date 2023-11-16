@@ -1,0 +1,16 @@
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+}
+.nav-main a{
+    text-decoration: none;
+    font-size: 24px;
+    padding-inline: 30px;
+    color: black;
+}
+.nav-main a:hover {
+    color: darkslategrey;
+}
