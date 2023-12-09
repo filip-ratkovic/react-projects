@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import Nav from './components/Nav'
-import NotFound from './components/NotFound'
 
 function App() {
   return (
