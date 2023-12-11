@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
 import Cart from './components/Cart'
 import Nav from './components/Nav'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
+import Products from './pages/Products'
 
 function App() {
   return (
@@ -10,7 +12,10 @@ function App() {
       <Nav/>
       <Routes>
       <Route path='/' element={<Home/>} />
-      <Route path='/cart' element={<Cart/>} />
+      <Route path='/contact' element={<Contact/>} />
+      <Route path='/products' element={<Products/>} />
+      <Route path='*' element={<div>Page not found</div>} />
+      <Route path='cart' element={<Cart/>} />
       </Routes>
     </div>
   )
