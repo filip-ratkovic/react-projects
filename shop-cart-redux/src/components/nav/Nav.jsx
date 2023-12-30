@@ -10,7 +10,6 @@ import "./nav.css";
 
 const Nav = () => {
   const {list} = useSelector(state => state.cart)
-  console.log(list.length)
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {

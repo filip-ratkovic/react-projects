@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {Button, Card, CardMedia, CardContent, CardActions, Typography} from '@mui/material/';
 import AddIcon from '@mui/icons-material/Add';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { addToCart } from '../../store/cartSlice';
 
 
 export default function ProductCard (props) {
     const {product} = props
     const dispatch = useDispatch()
+    
 
     const handleAddToCart = () => {
       dispatch(addToCart({
