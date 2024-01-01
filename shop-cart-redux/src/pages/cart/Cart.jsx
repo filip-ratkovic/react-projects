@@ -42,6 +42,7 @@ const handleRemove = (data) => {
                 <button onClick={()=> {
                   handleRemove(item)
                 }}>Remove</button>
+                <button>Clear all</button>
               </div>
             );
           })}
