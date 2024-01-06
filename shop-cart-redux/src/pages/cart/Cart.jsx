@@ -105,7 +105,7 @@ const handleRemove = (data) => {
                   </div>
                 </TableCell>
                 <TableCell align="right">
-                <Button onClick={() => {
+                <Button variant="solid" size="small" style={{padding:"0 10px", fontSize:"20px"  }} onClick={() => {
                 if(item.quantity>1) {
                   handleQty({...item, quantity : item.quantity-1})
                 }
