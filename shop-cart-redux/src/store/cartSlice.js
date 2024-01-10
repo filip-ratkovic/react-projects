@@ -24,12 +24,15 @@ const cartSlice = createSlice({
         removeItem(state, action) {
             state.list = state.list.filter(book => book.id !== action.payload.id)
             state.total = state.list.reduce((sum, book) => sum + +book?.price * book?.quantity, 0)
+        },
+        clearCart(state, action) {
+            state.list = []
         }
     }
 })
 
 const { actions, reducer } = cartSlice
 
-export const { addToCart, updateQuantity, removeItem } = actions
+export const { addToCart, updateQuantity, removeItem, clearCart } = actions
 
 export default reducer

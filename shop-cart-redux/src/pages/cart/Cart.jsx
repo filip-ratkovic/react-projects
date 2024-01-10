@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "../../store/cartSlice";
+import { removeItem, updateQuantity, clearCart } from "../../store/cartSlice";
 
 import {Table, TableCell, TableContainer, TableHead,TableBody, TableRow, Paper, Button, Fab } from "@mui/material";
 import { Clear as ClearIcon} from "@mui/icons-material";
@@ -19,6 +19,9 @@ const Cart = () => {
   const handleRemove = (data) => {
     dispatch(removeItem({ id: data?.id }));
   };
+  const handleClear = () => {
+    dispatch(clearCart())
+  }
   return (
     <div className="table-cart">
       {cartList && cartList.length > 0 ? (
@@ -37,13 +40,13 @@ const Cart = () => {
               {cartList.map((item) => (
                 <TableRow key={item.name}>
                   <TableCell>
-                    <div>
+                    <div className="cart-image">
                       <img
                         src={item.img}
                         alt={item.name}
                         style={{ width: "150px" }}
                       />
-                      {item.name}
+                      <p>{item.name}</p>
                     </div>
                   </TableCell>
                   <TableCell align="center">
@@ -109,8 +112,7 @@ const Cart = () => {
 
               <TableRow>
               <TableCell colSpan={5} align="right">
-              <Button variant="contained"  color="error">
-                  {/* <DeleteIcon color="warning"/> */}
+              <Button variant="contained"  color="error" onClick={handleClear}>
                     Clear cart
                   </Button>
               </TableCell>

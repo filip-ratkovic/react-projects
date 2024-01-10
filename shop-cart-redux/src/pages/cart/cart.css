@@ -13,3 +13,12 @@
     width: 100% ;
     padding: 10px;
 }
+
+.cart-image {
+    display: flex;
+    align-items: center;
+}
+.cart-image p  {
+    padding: 10px;
+    font-size: 24px;
+}
