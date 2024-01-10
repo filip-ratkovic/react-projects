@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Button, Card, CardMedia, CardContent, CardActions, Typography} from '@mui/material/';
 import AddIcon from '@mui/icons-material/Add';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { addToCart } from '../../store/cartSlice';
 
 

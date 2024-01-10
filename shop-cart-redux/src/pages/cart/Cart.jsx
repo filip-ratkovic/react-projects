@@ -1,15 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "../../store/cartSlice";
-import Table from "@mui/material/Table";
-import { TableBody, Button, Fab } from "@mui/material";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ClearIcon from "@mui/icons-material/Clear";
+
+import {Table, TableCell, TableContainer, TableHead,TableBody, TableRow, Paper, Button, Fab } from "@mui/material";
+import { Clear as ClearIcon} from "@mui/icons-material";
+
 import "./cart.css"
 
 const Cart = () => {
@@ -25,14 +20,14 @@ const Cart = () => {
     dispatch(removeItem({ id: data?.id }));
   };
   return (
-    <div>
+    <div className="table-cart">
       {cartList && cartList.length > 0 ? (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} >
           <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Quantity.</TableCell>
+            <TableHead >
+              <TableRow >
+                <TableCell >Name</TableCell>
+                <TableCell align="center">Quantity</TableCell>
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="right">Sum</TableCell>
                 <TableCell align="right"></TableCell>
@@ -51,7 +46,7 @@ const Cart = () => {
                       {item.name}
                     </div>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <div className="quantity-cart">
                     <Fab
                      sx={{
@@ -93,7 +88,7 @@ const Cart = () => {
                      sx={{
                       backgroundColor: "#fff", boxShadow: "none",
                       ':hover': {
-                        bgcolor: '#red', // theme.palette.primary.main
+                        bgcolor: '#red', 
                         color: 'white',
                       },
                     }}
@@ -107,19 +102,20 @@ const Cart = () => {
                 </TableRow>
               ))}
               <TableRow>
-                <TableCell rowSpan={3} />
-                <TableCell colSpan={2}>Total</TableCell>
+                <TableCell colSpan={3} sx={{border:"none"}}></TableCell>
+                <TableCell align="left"><h2>Total:</h2></TableCell>
                 <TableCell align="right">{cart.total.toFixed(2)} $</TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell colSpan={2}></TableCell>
-                <TableCell align="right">
-                  <Button variant="contained" color="error">
-                    <DeleteIcon color="white" />
+              <TableCell colSpan={5} align="right">
+              <Button variant="contained"  color="error">
+                  {/* <DeleteIcon color="warning"/> */}
                     Clear cart
                   </Button>
-                </TableCell>
+              </TableCell>
+                
+               
               </TableRow>
             </TableBody>
           </Table>
