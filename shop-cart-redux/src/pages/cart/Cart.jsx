@@ -1,17 +1,21 @@
 import React from "react";
+import Empty from "../../components/empty/Empty";
+
 import { useSelector, useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom"
 import { removeItem, updateQuantity, clearCart } from "../../store/cartSlice";
 
 import {Table, TableCell, TableContainer, TableHead,TableBody, TableRow, Paper, Button, Fab } from "@mui/material";
-import { Clear as ClearIcon} from "@mui/icons-material";
-
+import { Clear as ClearIcon, ArrowBack} from "@mui/icons-material";
 import "./cart.css"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
-  const cartList = cartItems.list;
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate()
+  
+  const cartList = cartItems.list;
 
   const handleQty = (data) => {
     dispatch(updateQuantity(data));
@@ -111,7 +115,14 @@ const Cart = () => {
               </TableRow>
 
               <TableRow>
-              <TableCell colSpan={5} align="right">
+                <TableCell>
+                      <div className="cart-continue" onClick={()=> navigate('/')}>
+                        <ArrowBack/>
+                        Continue Shopping
+                      </div>
+                </TableCell>
+                <TableCell></TableCell>
+              <TableCell colSpan={3} align="right">
               <Button variant="contained"  color="error" onClick={handleClear}>
                     Clear cart
                   </Button>
@@ -123,7 +134,7 @@ const Cart = () => {
           </Table>
         </TableContainer>
       ) : (
-        <div className="cart-empty">empty</div>
+        <Empty/>
       )}
     </div>
   );

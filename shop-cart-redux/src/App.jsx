@@ -7,6 +7,8 @@ import Cart from './pages/cart/Cart'
 import './app.css'
 
 const App = () => {
+
+ 
   return (
     <div>
       <Nav/>
