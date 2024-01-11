@@ -4,13 +4,16 @@ import AddIcon from '@mui/icons-material/Add';
 import {useDispatch} from 'react-redux'
 import { addToCart } from '../../store/cartSlice';
 
+import "./productCard.css"
 
 export default function ProductCard (props) {
+
     const {product} = props
     const dispatch = useDispatch()
     
 
     const handleAddToCart = () => {
+
       dispatch(addToCart({
         ...product,
         quantity: 1
@@ -20,7 +23,7 @@ export default function ProductCard (props) {
 
 
   return (
-    <Card sx={{ maxWidth: "100%", minWidth: 345 }}>
+    <Card className='product-card-main'>
       <CardContent>
         <Typography variant="h5" color="text.primary">
         {product.name}

@@ -30,10 +30,10 @@ const Cart = () => {
     <div className="table-cart">
       {cartList && cartList.length > 0 ? (
         <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+          <Table sx={{ width:"100%" }} aria-label="spanning table">
             <TableHead >
               <TableRow >
-                <TableCell >Name</TableCell>
+                <TableCell align="left" >Name</TableCell>
                 <TableCell align="center">Quantity</TableCell>
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="right">Sum</TableCell>
@@ -54,6 +54,8 @@ const Cart = () => {
                     </div>
                   </TableCell>
                   <TableCell align="center">
+                    <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+
                     <div className="quantity-cart">
                     <Fab
                      sx={{
@@ -84,6 +86,7 @@ const Cart = () => {
                     >
                       +
                     </Fab>
+                    </div>
                     </div>
                   </TableCell>
                   <TableCell align="right">{item.price.toFixed(2)} $</TableCell>
