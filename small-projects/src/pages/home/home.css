@@ -1,0 +1,26 @@
+.home-main-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: 30px;
+}
+
+#home-header {
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.projects-card-container {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+.card-container {
+    border: solid 1px red;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}

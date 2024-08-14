@@ -1,6 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Home from './home/Home'
+import Home from './pages/home/Home'
+
+import "./app.css"
 
 const App = () => {
   return (
