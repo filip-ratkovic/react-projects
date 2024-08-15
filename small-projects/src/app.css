@@ -1,5 +1,19 @@
+:root{
+    --backgroundGradiend:linear-gradient(90deg,#fafafa 0% , #fafafa 30%, #f8f8f8 60%, #fefefe 100%);  
+      --white: #ffffff;
+    --black:#17181c;
+    --green:#92bd88;
+    --darkgreen:#5e8256;
+    --light-grey:#f8f8f8;
+    --dark-black:#101d26;
+}
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+body {
+    background-image: var(--backgroundGradiend);
+    color: var(--blue);
 }

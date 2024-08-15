@@ -1,26 +1,24 @@
-import React from 'react'
+import React from "react";
+import react from "../../photos/react.png";
+import css from "../../photos/css.png";
+import javascript from "../../photos/javascript.png";
 
-import "./home.css"
+import "./home.css";
 
 const Home = () => {
-  const cardsName = ["Widgets", "Carusels", "Dropdowns"]
+  const cardsName = ["Widgets", "Carusels", "Dropdowns"];
   return (
-    <main className='home-main-cont'>
+    <main className="home-main-cont">
       <h1 id="home-header">Small Projects</h1>
       <section className="projects-card-container">
-        {cardsName.map((card) => {
-            return (
-              <div className="card-container">
-                  <p>
-                    {card}
-                  </p>
+        <div className="card-container">
+          <h1>Carousels</h1>
+          <img src={react} alt="react logo" />
+          <button>React</button>
         </div>
-            )
-        })}
-        
       </section>
-    </main >
-  )
-}
+    </main>
+  );
+};
 
-export default Home
+export default Home;
