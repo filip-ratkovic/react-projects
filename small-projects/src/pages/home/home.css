@@ -58,3 +58,10 @@
     right: -25px;
     bottom: 25px;
 }
+
+.card-container #btn {
+    bottom: 95px;
+    background-color: var(--light-grey);
+    color: var(--darkGrey);
+    cursor: pointer;
+}
