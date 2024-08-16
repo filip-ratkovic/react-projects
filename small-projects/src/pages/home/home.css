@@ -57,11 +57,12 @@
     position: absolute;
     right: -25px;
     bottom: 25px;
+    cursor: pointer;
 }
 
-.card-container #btn {
-    bottom: 95px;
-    background-color: var(--light-grey);
-    color: var(--darkGrey);
-    cursor: pointer;
+.home-image-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
