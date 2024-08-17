@@ -16,10 +16,10 @@ const homeData = [
         link: "/dropdowns"
     },
     {
-        name: "Dropdowns",
+        name: "Cards",
         image: css,
         language: "CSS",
-        link: "/dropdowns"
+        link: "/cards"
     }
 ]
 

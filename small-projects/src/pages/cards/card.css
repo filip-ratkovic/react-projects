@@ -1,0 +1,12 @@
+.cards-cont img {
+    height: 300px;
+    border: solid 1px rgb(27, 27, 27);
+    border-radius: 3px;
+
+}
+
+.cards-cont {
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+}
