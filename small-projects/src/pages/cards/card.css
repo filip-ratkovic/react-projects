@@ -5,8 +5,12 @@
 
 }
 
-.cards-cont {
+.cards-main {
     padding: 30px;
+    text-align: center;
+}
+.cards-cont {
+    padding-block: 20px;
     display: flex;
     gap: 30px;
 }
