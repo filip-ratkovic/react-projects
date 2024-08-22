@@ -1,0 +1,40 @@
+.cards-cont img {
+    height: 300px;
+    border: solid 1px rgb(27, 27, 27);
+    border-radius: 3px;
+    max-width: 100%;
+}
+
+.cards-main {
+    padding: 30px;
+    text-align: center;
+}
+.cards-cont {
+    padding-block: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+.card-tech {
+    color: grey;
+    font-weight: 550;
+}
+.projects-card-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width:550px) {
+    .cards-cont img {
+        height: auto;
+    }
+    .cards-cont {
+        flex-direction: column;
+    }
+}
+@media (max-width:900px) {
+    .cards-cont {
+        flex-direction: column;
+    }
+}
